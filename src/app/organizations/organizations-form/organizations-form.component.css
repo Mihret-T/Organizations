@@ -1,0 +1,13 @@
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+nz-select.ng-invalid.ng-touched{
+    border: 1px solid red;
+
+}
+
+.selected {
+   color: #00A9DE; 
+}
+nz-form-label {
+    font-weight: bold;
+}

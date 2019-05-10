@@ -1,0 +1,103 @@
+<div nz-row *ngIf="!editMode">
+  <div nz-col nzSpan="20">
+    <nz-page-header nzBackIcon (nzBack)="onBack()" nzTitle="New Department">
+      <nz-breadcrumb nz-page-header-breadcrumb>
+        <nz-breadcrumb-item><a [routerLink]="['/departments']" routerLinkActive="router-link-active">Departments</a></nz-breadcrumb-item>
+        <nz-breadcrumb-item class="selected">New</nz-breadcrumb-item>
+      </nz-breadcrumb>
+    </nz-page-header>
+  </div>
+</div>
+
+<div nz-row *ngIf="editMode">
+  <div nz-col nzSpan="20">
+    <nz-page-header nzBackIcon nzTitle="Edit Department" nzSubtitle="{{name}}">
+      <nz-breadcrumb nz-page-header-breadcrumb>
+        <nz-breadcrumb-item><a [routerLink]="['/departments']" routerLinkActive="router-link-active">Departments</a>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item class="selected">Edit</nz-breadcrumb-item>
+        <nz-breadcrumb-item class="selected">{{name}}</nz-breadcrumb-item>
+      </nz-breadcrumb>
+    </nz-page-header>
+  </div>
+</div>
+
+<div nz-row>
+    <div nz-col nzSpan="24" *ngIf="!editMode">
+      <nz-divider nzDashed [nzText]="text" class="selected">
+        <ng-template #text><i nz-icon type="form"></i> Form</ng-template>
+      </nz-divider>
+    </div>
+    <div nz-col nzSpan="24" *ngIf="editMode">
+      <nz-divider nzDashed [nzText]="text" class="selected">
+        <ng-template #text><i nz-icon type="edit"></i> Edit</ng-template>
+      </nz-divider>
+    </div>
+  </div>
+
+<div nz-row>
+  <div nz-col nzOffset="2">
+    <form nz-form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="deptName">Department Name</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input nz-input name="deptName" id="deptName" placeholder="Name" type="text" formControlName="deptName">
+          <nz-form-explain *ngIf="!departmentForm.get('deptName').valid && departmentForm.get('deptName').touched">
+            This field is required!
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="deptDesc">Department Description</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <textarea nz-input placeholder="Summary Describing the Department " class="form-control" type="text" id="desc"
+            rows="5" formControlName="deptDesc">
+              </textarea>
+          <nz-form-explain *ngIf="!departmentForm.get('deptDesc').valid && departmentForm.get('deptDesc').touched">
+            This field is required!
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="organizationName">Organization</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-select (ngModelChange)="organizationSelected($event)" id="organization" formControlName="deptOrg" nzShowSearch nzAllowClear
+            nzPlaceHolder="Select an organization">
+            <nz-option *ngFor="let org of organizations" [nzLabel]="org.name" [nzValue]="org.id"></nz-option>
+          </nz-select>
+          <nz-form-explain *ngIf="!departmentForm.get('deptOrg').valid && departmentForm.get('deptOrg').touched">
+            This field is required!
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="parentName">parent</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-select id="parent" formControlName="parentDept" nzShowSearch nzAllowClear
+            nzPlaceHolder="Select a Department">
+            <nz-option *ngFor="let dept of departmnetOptions" [nzLabel]="dept.name" [nzValue]="dept.id"></nz-option>
+            <nz-option nzLabel="None" [nzValue] = 0></nz-option>
+          </nz-select>
+          <nz-form-explain *ngIf="!departmentForm.get('parentDept').valid && departmentForm.get('parentDept').touched">
+            This field is required!
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control [nzSpan]="10" [nzOffset]="6">
+          <nz-button-group>
+            <button nz-button nzType="primary" class="btn btn-success" type="submit" [disabled]="!departmentForm.valid"><i
+                nz-icon nzType="save"></i> Save</button>
+            <button nz-button nzType="default" class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+            <button nz-button nzType="danger" class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
+          </nz-button-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
