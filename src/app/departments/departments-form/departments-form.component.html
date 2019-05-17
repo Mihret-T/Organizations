@@ -11,7 +11,7 @@
 
 <div nz-row *ngIf="editMode">
   <div nz-col nzSpan="20">
-    <nz-page-header nzBackIcon nzTitle="Edit Department" nzSubtitle="{{name}}">
+    <nz-page-header nzBackIcon (nzBack)="onBack()" nzTitle="Edit Department" nzSubtitle="{{name}}">
       <nz-breadcrumb nz-page-header-breadcrumb>
         <nz-breadcrumb-item><a [routerLink]="['/departments']" routerLinkActive="router-link-active">Departments</a>
         </nz-breadcrumb-item>

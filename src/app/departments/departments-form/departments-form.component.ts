@@ -92,7 +92,10 @@ export class DepartmentsFormComponent implements OnInit {
   }
 
   onClear() {
-    this.departmentForm.reset();
+    this.departmentForm.patchValue({
+      'deptName' : '',
+      'deptDesc' : '',
+    })
   }
   onCancel() {
     this.router.navigate(['departments']);

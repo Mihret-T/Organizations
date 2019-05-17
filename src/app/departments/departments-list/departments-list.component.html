@@ -2,7 +2,7 @@
   <div nz-col nzSpan="20">
     <nz-page-header nzBackIcon (nzBack)="onBack()" nzTitle="Department List" nzSubtitle="{{organization.name}}">
       <nz-breadcrumb nz-page-header-breadcrumb>
-        <nz-breadcrumb-item><a [routerLink]="['/organization']" routerLinkActive="router-link-active">Organizations</a>
+        <nz-breadcrumb-item><a [routerLink]="['/organizations']" routerLinkActive="router-link-active">Organizations</a>
         </nz-breadcrumb-item>
         <nz-breadcrumb-item><a [routerLink]="['/org-details',  organization_id]"
             routerLinkActive="router-link-active">{{organization.name}}</a></nz-breadcrumb-item>
@@ -55,7 +55,7 @@
             <td>{{department.name}}</td>
             <td>{{department.description}}</td>
             <td>{{department.organizationName}}</td>
-            <td> {{department.parentName}}</td>
+            <td>{{department.parentName}}</td>
             <td>
               <a><i style="font-size: 20px; color: #08c;" nz-icon nzType="eye" nzTheme="outline" nz-tooltip
                   nzTitle="View {{department.name}} Details" (click)="onView(department.id)"></i></a>
