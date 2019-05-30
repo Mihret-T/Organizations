@@ -1,7 +1,7 @@
 <div nz-row>
   <div nz-col nzSpan="20">
     <nz-page-header nzTitle="Organizations List"></nz-page-header>
-    <button nz-button nzSize="default" nzType="primary" (click)="onAddOrganization()" type="submit">
+    <button  data-cy="new_organization" nz-button nzSize="default" nzType="primary" (click)="onAddOrganization()" type="submit">
       <i nz-icon [type]="'plus'"></i>Add New Organization</button>
   </div>
 </div>
@@ -25,17 +25,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let organization of organizations;let i=index">
-          <td>{{organization.name}}</td>
-          <td>{{organization.description}}</td>
+        <tr  data-cy="organizations_list" *ngFor="let organization of organizations;let i=index">
+          <td data-cy="name">{{organization.name}}</td>
+          <td data-cy="description">{{organization.description}}</td>
           <td>
-            <a><i style="font-size: 20px; color: #08c;" nz-icon nzType="eye" nzTheme="outline" nz-tooltip
+            <a><i data-cy="org_details" style="font-size: 20px; color: #08c;" nz-icon nzType="eye" nzTheme="outline" nz-tooltip
                 nzTitle="View {{organization.name}} Details" (click)="onView(i)"></i></a>
             <nz-divider nzType="vertical"></nz-divider>
-            <a><i style="font-size: 20px; color: #08c;" nz-icon nzType="edit" nz-tooltip
+            <a><i  data-cy="edit_org" style="font-size: 20px; color: #08c;" nz-icon nzType="edit" nz-tooltip
                 nzTitle="Edit {{organization.name}}" (click)="onEdit(i)"></i></a>
             <nz-divider nzType="vertical"></nz-divider>
-            <a><i style="font-size: 20px; color: red;" nz-icon nzType="delete" nzTheme="outline" nz-tooltip
+            <a><i data-cy="delete_org" style="font-size: 20px; color: red;" nz-icon nzType="delete" nzTheme="outline" nz-tooltip
                 nzTitle="Delete {{organization.name}}" (click)="onDelete(i)"></i></a>
           </td>
         </tr>

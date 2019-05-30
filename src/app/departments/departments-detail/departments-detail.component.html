@@ -1,12 +1,12 @@
 <div nz-row>
   <div nz-col nzSpan="20">
-    <nz-page-header nzBackIcon (nzBack)="onBack()" nzTitle="Department Detail">
+    <nz-page-header data-cy="header" nzBackIcon (nzBack)="onBack()" nzTitle="Department Detail">
       <nz-breadcrumb nz-page-header-breadcrumb>
-        <nz-breadcrumb-item><a [routerLink]="['/organizations']" routerLinkActive="router-link-active">Organizations</a>
+        <nz-breadcrumb-item data-cy="bc_organizations"><a [routerLink]="['/organizations']" routerLinkActive="router-link-active">Organizations</a>
         </nz-breadcrumb-item>
-        <nz-breadcrumb-item><a [routerLink]="['/org-details', department.organization_id]"
+        <nz-breadcrumb-item data-cy="bc_details"><a [routerLink]="['/org-details', department.organization_id]"
             routerLinkActive="router-link-active">{{department.organizationName}}</a></nz-breadcrumb-item>
-        <nz-breadcrumb-item><a [routerLink]="['/departments', department.organization_id]"
+        <nz-breadcrumb-item data-cy="bc_departments"><a [routerLink]="['/departments', department.organization_id]"
             routerLinkActive="router-link-active"> Departments</a></nz-breadcrumb-item>
         <nz-breadcrumb-item class="selected">Details </nz-breadcrumb-item>
         <nz-breadcrumb-item class="selected">{{department.name}}</nz-breadcrumb-item>
@@ -25,28 +25,28 @@
 
 <div nz-row>
   <div nz-col nzSpan="16" nzOffset="4">
-    <p style="font-size:30px; color:rgba(0, 0, 0, 0.85); margin-bottom:16px; font-weight: 500;">
+    <p data-cy="name" style="font-size:30px; color:rgba(0, 0, 0, 0.85); margin-bottom:16px; font-weight: 500;">
       <nz-avatar nzSize="large"nzText="{{ department.name.length <= 3 ? department.name: department.name[0]}}" style="background-color:#00A9DE;"></nz-avatar>
       {{department.name}}
     </p>
     <nz-card nzType="inner" nzTitle="Description">
-      <p>{{department.description}} </p>
+      <p data-cy="description">{{department.description}} </p>
     </nz-card>
     <nz-card nzType="inner" style="margin-top:16px;" nzTitle="Parent Department">
-      <p>{{department.parentName}}</p>
-      <a *ngIf="department.parent_id!= null" [routerLink]="['/dept-details', department.parent_id]"
+      <p data-cy="parent">{{department.parentName}}</p>
+      <a data-cy="parent_link" *ngIf="department.parent_id!= null" [routerLink]="['/dept-details', department.parent_id]"
         routerLinkActive="router-link-active">View Department</a>
     </nz-card>
     <nz-card nzType="inner" style="margin-top:16px;" nzTitle="Department Organization">
-      <p>{{department.organizationName}}</p>
-      <a [routerLink]="['/org-details', department.organization_id]" routerLinkActive="router-link-active"> View
+      <p data-cy="organization">{{department.organizationName}}</p>
+      <a data-cy="organization_link" [routerLink]="['/org-details', department.organization_id]" routerLinkActive="router-link-active"> View
         Organization</a>
     </nz-card>
     <br><br>
     <nz-button-group>
-      <button nz-button nzSize="large" nzType="default" type="button" class="btn btn-primary" (click)="onEdit()">
+      <button data-cy="edit" nz-button nzSize="large" nzType="default" type="button" class="btn btn-primary" (click)="onEdit()">
         <i nz-icon nzType="edit" nzTheme="outline"></i>Edit</button>
-      <button nz-button nzSize="large" nzType="danger" type="button" class="btn btn-danger" (click)="onDelete()">
+      <button data-cy="delete" nz-button nzSize="large" nzType="danger" type="button" class="btn btn-danger" (click)="onDelete()">
         <i nz-icon nzType="delete" nzTheme="outline"></i> Delete</button>
     </nz-button-group>
   </div>

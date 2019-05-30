@@ -1,8 +1,8 @@
 <div nz-row>
   <div nz-col nzSpan="20"  *ngIf="!editMode">
-  <nz-page-header nzBackIcon (nzBack)="onBack()"  nzTitle="Adding New Organization">
+  <nz-page-header data-cy="header" nzBackIcon (nzBack)="onBack()"  nzTitle="Adding New Organization">
     <nz-breadcrumb nz-page-header-breadcrumb>
-      <nz-breadcrumb-item><a [routerLink]="['/organizations']" routerLinkActive="router-link-active" >Organizations</a></nz-breadcrumb-item>
+      <nz-breadcrumb-item data-cy="bc_organizations" ><a [routerLink]="['/organizations']" routerLinkActive="router-link-active" >Organizations</a></nz-breadcrumb-item>
       <nz-breadcrumb-item class="selected">New</nz-breadcrumb-item>
     </nz-breadcrumb>
   </nz-page-header>
@@ -37,9 +37,9 @@
     
       <nz-form-item>
         <nz-form-label  nzFor="organizationName" >Organization Name</nz-form-label>
-        <nz-form-control  >
-          <input nz-input name="orgName" id="organizationName" placeholder="Name" type="text" formControlName="orgName">
-          <nz-form-explain *ngIf="!organizationForm.get('orgName').valid && organizationForm.get('orgName').touched">
+        <nz-form-control>
+          <input data-cy="name_field" nz-input name="orgName" id="organizationName" placeholder="Name" type="text" formControlName="orgName">
+          <nz-form-explain  data-cy="helpText" *ngIf="!organizationForm.get('orgName').valid && organizationForm.get('orgName').touched">
             This field is required!
           </nz-form-explain>
         </nz-form-control>
@@ -48,10 +48,10 @@
       <nz-form-item>
         <nz-form-label nzFor="organizationDesc">Organization Description</nz-form-label>
         <nz-form-control>
-          <textarea nz-input formControlName="orgDesc" placeholder="Summary Describing the Organization" type="text"
+          <textarea data-cy="description-field" nz-input formControlName="orgDesc" placeholder="Summary Describing the Organization" type="text"
             id="desc" rows="5">
                   </textarea>
-          <nz-form-explain *ngIf="!organizationForm.get('orgDesc').valid && organizationForm.get('orgDesc').touched">
+          <nz-form-explain data-cy="helpText" *ngIf="!organizationForm.get('orgDesc').valid && organizationForm.get('orgDesc').touched">
             This field is required!
           </nz-form-explain>
         </nz-form-control>
@@ -59,10 +59,10 @@
       <nz-form-item>
         <nz-form-control [nzSpan]="14" [nzOffset]="6">
           <nz-button-group>
-            <button nz-button nzType="primary" class="btn btn-success" [disabled]="!organizationForm.valid" type="submit"><i
+            <button data-cy="submit" nz-button nzType="primary" class="btn btn-success" [disabled]="!organizationForm.valid" type="submit"><i
                 nz-icon nzType="save"></i>Save</button>
-            <button nz-button nzType="default" class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
-            <button nz-button nzType="danger" class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
+            <button data-cy="clear" nz-button nzType="default" class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+            <button data-cy="cancel" nz-button nzType="danger" class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
           </nz-button-group>
         </nz-form-control>
       </nz-form-item>

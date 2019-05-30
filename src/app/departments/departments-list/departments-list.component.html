@@ -1,20 +1,20 @@
 <div nz-row>
   <div nz-col nzSpan="20">
-    <nz-page-header nzBackIcon (nzBack)="onBack()" nzTitle="Department List" nzSubtitle="{{organization.name}}">
+    <nz-page-header data-cy="header" nzBackIcon (nzBack)="onBack()" nzTitle="Department List" nzSubtitle="{{organization.name}}">
       <nz-breadcrumb nz-page-header-breadcrumb>
-        <nz-breadcrumb-item><a [routerLink]="['/organizations']" routerLinkActive="router-link-active">Organizations</a>
+        <nz-breadcrumb-item data-cy="bc_organizations"><a [routerLink]="['/organizations']" routerLinkActive="router-link-active">Organizations</a>
         </nz-breadcrumb-item>
-        <nz-breadcrumb-item><a [routerLink]="['/org-details',  organization_id]"
+        <nz-breadcrumb-item data-cy="bc_details"><a [routerLink]="['/org-details',  organization_id]"
             routerLinkActive="router-link-active">{{organization.name}}</a></nz-breadcrumb-item>
         <nz-breadcrumb-item class="selected"> Departments</nz-breadcrumb-item>
       </nz-breadcrumb>
     </nz-page-header>
-    <button type="button" nz-button nzSize="defualt" nzType="primary" style="margin-left: 20px; float: left;"
+    <button data-cy="new_department" type="button" nz-button nzSize="defualt" nzType="primary" style="margin-left: 20px; float: left;"
       (click)="onAddDepartment()" type="submit">
       <i nz-icon [type]="'plus'"></i>Add New Department</button>
     <div style="float: right;">
       <h3>View Mode</h3>
-      <nz-switch nzSize="default" [(ngModel)]="switchMode" nzCheckedChildren="Table" nzUnCheckedChildren="Tree">
+      <nz-switch data-cy="mode" nzSize="default" [(ngModel)]="switchMode" nzCheckedChildren="Table" nzUnCheckedChildren="Tree">
       </nz-switch>
     </div>
   </div>
@@ -51,19 +51,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let department of organizationDepartments;let i=index">
-            <td>{{department.name}}</td>
-            <td>{{department.description}}</td>
-            <td>{{department.organizationName}}</td>
-            <td>{{department.parentName}}</td>
+          <tr data-cy="departments_list" *ngFor="let department of organizationDepartments;let i=index">
+            <td data-cy="name">{{department.name}}</td>
+            <td data-cy="description">{{department.description}}</td>
+            <td data-cy="organization">{{department.organizationName}}</td>
+            <td data-cy="parent">{{department.parentName}}</td>
             <td>
-              <a><i style="font-size: 20px; color: #08c;" nz-icon nzType="eye" nzTheme="outline" nz-tooltip
+              <a><i data-cy="view" style="font-size: 20px; color: #08c;" nz-icon nzType="eye" nzTheme="outline" nz-tooltip
                   nzTitle="View {{department.name}} Details" (click)="onView(department.id)"></i></a>
               <nz-divider nzType="vertical"></nz-divider>
-              <a><i style="font-size: 20px; color:#08c;;" nz-icon nzType="edit" nz-tooltip
+              <a><i data-cy="edit" style="font-size: 20px; color:#08c;;" nz-icon nzType="edit" nz-tooltip
                   nzTitle="Edit {{department.name}}" (click)="onEdit(department.id)"></i></a>
               <nz-divider nzType="vertical"></nz-divider>
-              <a><i style="font-size: 20px; color: red;" nz-icon nzType="delete" nzTheme="outline" nz-tooltip
+              <a><i data-cy="delete" style="font-size: 20px; color: red;" nz-icon nzType="delete" nzTheme="outline" nz-tooltip
                   nzTitle="Delete {{department.name}}" (click)="onDelete(department.id)"></i></a>
             </td>
           </tr>
@@ -76,12 +76,12 @@
 <div *ngIf="!switchMode">
   <div nz-row *ngIf="empty">
     <div nz-col nzOffset="4">
-      <nz-empty [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+      <nz-empty data-cy="empty" [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
         <ng-template #contentTpl>
           <span> No content to be displayed!!!!</span>
         </ng-template>
         <ng-template #footerTpl>
-          <button nz-button nzType="primary" (click)="onAddDepartment()">Add Departments</button>
+          <button data-cy="new_department" nz-button nzType="primary" (click)="onAddDepartment()">Add Departments</button>
         </ng-template>
       </nz-empty>
     </div>
@@ -89,7 +89,7 @@
 
   <div nz-row *ngIf="organizationDepartments !=  []">
     <div nz-col nzSpan="14" nzOffset="4">
-      <nz-tree [nzData]="nodes" [nzShowLine]="true" [nzSelectedKeys]="defaultSelectedKeys" (nzClick)="nzClick($event)">
+      <nz-tree data-cy="tree" [nzData]="nodes" [nzShowLine]="true" [nzSelectedKeys]="defaultSelectedKeys" (nzClick)="nzClick($event)">
       </nz-tree>
     </div>
   </div>
