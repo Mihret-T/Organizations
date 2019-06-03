@@ -3,7 +3,8 @@
         "strict": true,
         "baseUrl": "../node_modules",
         "target": "es5",
-        "module": "es2015",
+        "module": "es6",
+        "moduleResolution": "node",
         "lib": [
             "es5",
             "dom"
