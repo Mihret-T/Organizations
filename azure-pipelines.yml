@@ -19,7 +19,5 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
-    npm run ci:start-server
-    npm run cy:run
     npm run ci:cy-run
   displayName: 'npm install and build'
