@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
     "ci:start-server": "angular-http-server --path ./dist/organization-manager -p 4200",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "ci:cy-run": "start-server-and-test ci:start-server http://localhost:4200 cy:run"
   },
   "private": true,
   "dependencies": {
